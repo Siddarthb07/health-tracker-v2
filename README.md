@@ -1,2 +1,1 @@
-# health-tracker-v2
-ai health tracker with risk prediction
+under devlopment only a functional health tracker in this version risk prediction is invalid 
