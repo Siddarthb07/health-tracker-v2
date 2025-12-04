@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card form-card">
+  <h2>Your Profile & Health Survey</h2>
+  <form method="post">
+    <label>Age<input name="age" type="number" value="{{ user.age }}"></label>
+    <label>Sex
+      <select name="sex">
+        <option value="male" {% if user.sex == 'male' %}selected{% endif %}>Male</option>
+        <option value="female" {% if user.sex == 'female' %}selected{% endif %}>Female</option>
+        <option value="other" {% if user.sex == 'other' %}selected{% endif %}>Other</option>
+      </select>
+    </label>
+    <label>Height (cm)<input name="height_cm" type="number" value="{{ user.height }}"></label>
+    <label>Weight (kg)<input name="weight_kg" type="number" value="{{ user.weight }}"></label>
+
+    <h3>Daily / Lifestyle (you can set defaults)</h3>
+    <label>Sugary drinks per day<input name="sugar_drinks" type="number" step="0.1" value="{{ user.sugar_drinks or 0 }}"></label>
+    <label>Fruit servings/day<input name="fruit_servings" type="number" step="0.1" value="{{ user.fruit_servings or 1 }}"></label>
+    <label>Vegetable servings/day<input name="veg_servings" type="number" step="0.1" value="{{ user.veg_servings or 2 }}"></label>
+    <label>Stress level (0-10)<input name="stress_level" type="number" step="0.1" value="{{ user.stress_level or 5 }}"></label>
+
+    <h3>Vitals (enter recent measurements if available)</h3>
+    <label>Systolic BP (mmHg)<input name="systolic" type="number" step="0.1" value="{{ user.systolic or 120 }}"></label>
+    <label>Diastolic BP (mmHg)<input name="diastolic" type="number" step="0.1" value="{{ user.diastolic or 80 }}"></label>
+    <label>Resting HR (bpm)<input name="resting_hr" type="number" step="0.1" value="{{ user.resting_hr or 70 }}"></label>
+
+    <h3>Existing Conditions</h3>
+    <label><input type="checkbox" name="existing_diabetes" {% if user.existing_diabetes %}checked{% endif %}> Diabetes</label>
+    <label><input type="checkbox" name="existing_cvd" {% if user.existing_cvd %}checked{% endif %}> Cardiovascular Disease</label>
+    <label><input type="checkbox" name="existing_cancer" {% if user.existing_cancer %}checked{% endif %}> Cancer</label>
+    <label><input type="checkbox" name="existing_asthma" {% if user.existing_asthma %}checked{% endif %}> Asthma</label>
+
+    <h3>Family History</h3>
+    <label><input type="checkbox" name="family_history_cancer" {% if user.family_history_cancer %}checked{% endif %}> Family Cancer</label>
+    <label><input type="checkbox" name="family_history_cvd" {% if user.family_history_cvd %}checked{% endif %}> Family CVD</label>
+    <label><input type="checkbox" name="family_history_diabetes" {% if user.family_history_diabetes %}checked{% endif %}> Family Diabetes</label>
+
+    <h3>Lab Biomarkers (optional)</h3>
+    <label>A1c (%)<input name="a1c" type="number" step="0.01" value="{{ user.a1c or '' }}"></label>
+    <label>Fasting glucose (mg/dL)<input name="fasting_glucose" type="number" step="0.1" value="{{ user.fasting_glucose or '' }}"></label>
+    <label>LDL (mg/dL)<input name="ldl" type="number" step="0.1" value="{{ user.ldl or '' }}"></label>
+    <label>HDL (mg/dL)<input name="hdl" type="number" step="0.1" value="{{ user.hdl or '' }}"></label>
+    <label>Triglycerides (mg/dL)<input name="triglycerides" type="number" step="0.1" value="{{ user.triglycerides or '' }}"></label>
+    <label>CRP (mg/L)<input name="crp" type="number" step="0.01" value="{{ user.crp or '' }}"></label>
+
+    <div class="actions"><button class="btn" type="submit">Save Profile & Survey</button></div>
+  </form>
+  <p class="hint">Profile & survey values are used to compute personalized risk estimates instantly. More accurate inputs (labs, vitals) → better personalized predictions. </p>
+</section>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero-card">
+  <h1>Health Studio — Your personal health companion</h1>
+  <p>Log lifestyle and lab results, add family history and conditions, and see calibrated risk predictions for multiple diseases.</p>
+  <div class="hero-actions">
+    <a class="btn" href="{{ url_for('register') }}">Create account</a>
+    <a class="btn ghost" href="{{ url_for('login') }}">Sign in</a>
+  </div>
+</section>
+{% endblock %}
